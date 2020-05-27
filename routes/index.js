@@ -35,11 +35,6 @@ router
       jwt: Joi.string().length(172),
     }).unknown(true),
   }), auth, users)
-  .get('/crash-test', () => {
-    setTimeout(() => {
-      throw new Error('Сервер сейчас упадёт');
-    }, 0);
-  })
   .use('*', (req, res, next) => {
     next(new NotFoundError('Запрашиваемый ресурс не найден'));
   })
