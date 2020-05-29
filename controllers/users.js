@@ -3,6 +3,7 @@ const bcrypt = require('bcryptjs');
 const User = require('../models/user');
 const NotFoundError = require('../errors/not-found-err');
 const AuthorError = require('../errors/AuthorizationError');
+const UserExistsError = require('../errors/user-exists-err');
 
 const { JWT_SECRET } = require('../config');
 
@@ -38,7 +39,7 @@ const createUser = (req, res, next) => {
   bcrypt.hash(password, 10)
     .then((hash) => User.create({
       name, about, avatar, email, password: hash,
-    }))
+    }).orFail(new UserExistsError('Пользователь с таким email уже есть в базе')))
     .then((user) => res.send({
       data: {
         _id: user._id, name: user.name, about: user.about, avatar: user.avatar, email: user.email,
