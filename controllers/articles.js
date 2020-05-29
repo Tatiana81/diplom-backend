@@ -3,11 +3,10 @@ const NotFoundError = require('../errors/not-found-err');
 const PermissionError = require('../errors/permission-error');
 
 const getArticles = (req, res, next) => {
-  console.log(req.user._id);
   Article
     .find({ owner: req.user._id })
     .orFail(new NotFoundError('В базе данных нет ни одной статьи'))
-    .then((article) => { console.log(article); res.send({ data: article }); })
+    .then((article) => res.send({ data: article }))
     .catch(next);
 };
 

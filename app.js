@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const router = require('./routes/index');
+// const limiter = require('./middlewares/rate-limiter');
 
 const { PORT, DATABASE_URL } = require('./config.js');
 
@@ -20,6 +21,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cookieParser());
 
+// app.use('*', limiter);
 app.use(router);
 
 app.listen(PORT);
