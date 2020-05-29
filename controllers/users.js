@@ -26,24 +26,27 @@ const findUser = (req, res, next) => {
   User.findById(req.user._id)
     .orFail(new NotFoundError('Нет пользователя с таким id'))
     .then((user) => {
-      res.status(200).send({ data: user });
+      res.status(200).send({ name: user.name, email: user.email });
     })
     .catch(next);
 };
 
-// eslint-disable-next-line consistent-return
 const createUser = (req, res, next) => {
-  const {
-    name, about, avatar, email, password,
-  } = req.body;
+  const { name, email, password } = req.body;
   bcrypt.hash(password, 10)
-    .then((hash) => User.create({
-      name, about, avatar, email, password: hash,
-    }).orFail(new UserExistsError('Пользователь с таким email уже есть в базе')))
-    .then((user) => res.send({
-      data: {
-        _id: user._id, name: user.name, about: user.about, avatar: user.avatar, email: user.email,
-      },
+    .then((hash) => User.create({ name, email, password: hash }, (err, user) => {
+      if (err) next(new UserExistsError('Пользователь существует'));
+      else {
+        res.send({
+          data: {
+            _id: user._id,
+            name: user.name,
+            about: user.about,
+            avatar: user.avatar,
+            email: user.email,
+          },
+        });
+      }
     }))
     .catch(next);
 };

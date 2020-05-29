@@ -40,7 +40,7 @@ router
   })
   .use(errorLogger)
   .use(errors())
-  // eslint-disable-next-line no-unused-vars
+
   .use((err, req, res, next) => {
     const { statusCode = 500, message } = err;
     res
@@ -49,7 +49,8 @@ router
         message: statusCode === 500
           ? 'На сервере произошла ошибка'
           : message,
-      });
+      })
+      .catch(next);
   });
 
 module.exports = router;
