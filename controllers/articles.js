@@ -2,12 +2,12 @@ const Article = require('../models/article');
 const NotFoundError = require('../errors/not-found-err');
 const PermissionError = require('../errors/permission-error');
 
-
 const getArticles = (req, res, next) => {
-  Article.find({})
+  console.log(req.user._id);
+  Article
+    .find({ owner: req.user._id })
     .orFail(new NotFoundError('В базе данных нет ни одной статьи'))
-    .populate('owner')
-    .then((article) => res.send({ data: article }))
+    .then((article) => { console.log(article); res.send({ data: article }); })
     .catch(next);
 };
 
@@ -27,7 +27,7 @@ const createArticle = (req, res, next) => {
     keyword, title, text, date, source, link, image,
   } = req.body;
   Article.create({
-    keyword, title, text, date, source, link, image, owner: req.user._id,
+    owner: req.user._id, keyword, title, text, date, source, link, image,
   })
     .then((article) => res.send({ data: article }))
     .catch(next);
