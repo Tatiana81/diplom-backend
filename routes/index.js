@@ -5,7 +5,7 @@ const articles = require('./articles');
 const auth = require('../middlewares/auth');
 const NotFoundError = require('../errors/not-found-err');
 const { createUser, login } = require('../controllers/users');
-const messages = require('../config');
+const { messages } = require('../config');
 
 const { requestLogger, errorLogger } = require('../middlewares/logger');
 
@@ -41,8 +41,7 @@ router
   })
   .use(errorLogger)
   .use(errors())
-
-  .use((err, req, res, next) => {
+  .use((err, req, res) => {
     const { statusCode = 500, message } = err;
     res
       .status(statusCode)
@@ -50,8 +49,7 @@ router
         message: statusCode === 500
           ? messages.serverError
           : message,
-      })
-      .catch(next);
+      });
   });
 
 module.exports = router;
