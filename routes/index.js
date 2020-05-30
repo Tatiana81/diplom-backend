@@ -42,6 +42,9 @@ router
   .use(errorLogger)
   .use(errors())
   .use((err, req, res, next) => {
+    if (res.headersSent) {
+      next(err);
+    }
     const { statusCode = 500, message } = err;
     res
       .status(statusCode)
