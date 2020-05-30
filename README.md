@@ -1,4 +1,4 @@
-## Проектная работа № 15 Яндекс.Практикум
+## Дипломная работа Яндекс.Практикум. Бэкенд
 
 ### Содержание
 1. [Структура проекта](#structure)
@@ -74,15 +74,17 @@
     winston: 3.2.1,
     eslint: 6.8.0,
     eslint-config-airbnb-base: 14.1.0,
-    eslint-plugin-import: 2.20.2
+    eslint-plugin-import: 2.20.2,
+    helmet: 3.22.0
 
 <a name='version'></a>
 ### Версия: 1.0.0
 
 <a name='link'></a>
-### Ссылка на адрес страницы: https://tatiana81.github.io/diplom-backend/
+### Ссылка на адрес страницы GitHub: https://tatiana81.github.io/diplom-backend/
 ### IP-адрес: 84.201.130.220
-### Доменное имя: api.tsmesto.gq ()
+### Доменное имя: api.tsnews.gq (www.api.tsnews.gq)
+### Ссылки на API: http://api.tsnews.gq, https://api.tsnews.gq 
 
 <a name='author'></a>
 ### Автор: Суроева Татьяна
