@@ -12,10 +12,10 @@ module.exports.DB_PARAMS = {
 module.exports.messages = {
   wrongUserPassword: 'Неправильный пользователь или пароль',
   wrongId: 'Нет документа с таким id',
-  permissionDenied: 'У Вас недостаточно прав на совершение операции',
+  permissionDenied: 'Нельзя удалять чужие статьи',
   userExists: 'Пользователь уже зарегистрирован. Войти в систему?',
   authorError: 'Необходима авторизация',
   resourceNotFound: 'Запрашиваемый ресурс не найден',
   serverError: 'На сервере произошла ошибка',
-  noArticle: 'На сервере нет Ваших статей',
+  noArticle: 'Вы не сохранили ни одной статьи',
 };
