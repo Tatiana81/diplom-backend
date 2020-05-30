@@ -12,7 +12,7 @@ module.exports.DB_PARAMS = {
 module.exports.messages = {
   wrongUserPassword: 'Неправильный пользователь или пароль',
   wrongId: 'Нет документа с таким id',
-  permissionDenied: 'У Вас не остаточно прав',
+  permissionDenied: 'У Вас недостаточно прав на совершение операции',
   userExists: 'Пользователь уже зарегистрирован. Войти в систему?',
   authorError: 'Необходима авторизация',
   resourceNotFound: 'Запрашиваемый ресурс не найден',
