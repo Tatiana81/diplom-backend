@@ -5,6 +5,7 @@ const articles = require('./articles');
 const auth = require('../middlewares/auth');
 const NotFoundError = require('../errors/not-found-err');
 const { createUser, login } = require('../controllers/users');
+const messages = require('../config');
 
 const { requestLogger, errorLogger } = require('../middlewares/logger');
 
@@ -36,7 +37,7 @@ router
     }).unknown(true),
   }), auth, users)
   .use('*', (req, res, next) => {
-    next(new NotFoundError('Запрашиваемый ресурс не найден'));
+    next(new NotFoundError(messages.resourceNotFound));
   })
   .use(errorLogger)
   .use(errors())
@@ -47,7 +48,7 @@ router
       .status(statusCode)
       .send({
         message: statusCode === 500
-          ? 'На сервере произошла ошибка'
+          ? messages.serverError
           : message,
       })
       .catch(next);
