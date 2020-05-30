@@ -1,7 +1,7 @@
 const Article = require('../models/article');
 const NotFoundError = require('../errors/not-found-err');
 const PermissionError = require('../errors/permission-error');
-const messages = require('../config');
+const { messages } = require('../config');
 
 const getArticles = (req, res, next) => {
   Article

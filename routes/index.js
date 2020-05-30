@@ -41,7 +41,7 @@ router
   })
   .use(errorLogger)
   .use(errors())
-  .use((err, req, res) => {
+  .use((err, req, res, next) => {
     const { statusCode = 500, message } = err;
     res
       .status(statusCode)
